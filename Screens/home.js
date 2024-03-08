@@ -11,7 +11,7 @@ import { FontAwesome, FontAwesome5, Feather } from "@expo/vector-icons";
 
 const Home = () => {
   const [displayText, setDisplayText] = useState("");
-  const [result, setResult] = useState(0);
+  const [bracketOpen, setBracketOpen] = useState(false);
 
   const handlePress = (val) => {
     console.log("I am pressed", val);
@@ -22,7 +22,28 @@ const Home = () => {
       parseFloat(displayText);
     } else if (val == "del") {
       setDisplayText(displayText.slice(0,-1))
-    } else if (val == "()") {
+
+    } else if (val == "bracket") {
+      if(displayText=='0'){
+        setDisplayText('(')
+        setBracketOpen(true)
+      }else if ( displayText.slice(-1) == "+" ||
+      displayText.slice(-1) == "-" ||
+      displayText.slice(-1) == "X" ||
+      displayText.slice(-1) == "/" ||
+      displayText.slice(-1) == "%"){
+        setDisplayText(displayText + '(');
+        setBracketOpen(true);
+      }else{
+           if(bracketOpen==true){
+          setDisplayText(displayText+ ')');
+          setBracketOpen(false)
+        }else{
+          setDisplayText(displayText+ '(');
+          setBracketOpen(true)
+        }
+          
+      }
     } else {
       if (displayText == "0") {
         if (
@@ -76,7 +97,7 @@ const Home = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, styles.buttonGray]}
-            onPress={() => handlePress("()")}
+            onPress={() => handlePress("bracket")}
           >
             <Text style={[styles.keyText, styles.keyWhite]}>( )</Text>
           </TouchableOpacity>
