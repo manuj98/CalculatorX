@@ -12,7 +12,7 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
   if (loading) {
     return <LoadingScreen />;
