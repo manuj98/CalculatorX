@@ -18,8 +18,28 @@ const Home = () => {
 
     if (val == "AC") {
       setDisplayText("0");
+
     } else if (val == "=") {
-      parseFloat(displayText);
+        try{
+          if( ( displayText.match(/\(/g) || [] ).length == ( displayText.match(/\)/g) || [] ).length){ //matching brackets
+          
+            if(displayText.slice(-1) == "+" ||
+            displayText.slice(-1) == "-" ||
+            displayText.slice(-1) == "X" ||
+            displayText.slice(-1) == "/" ||
+            displayText.slice(-1) == "%"){//evaluating without last char and replacing occurence of () and ('0')
+                  setDisplayText(`${eval(displayText.replace('()', '(0)')).slice(-1)}`)
+            }else{
+              setDisplayText(`${eval(displayText.replace('()', '(0)'))}`)
+            }
+
+          }else{
+            console.log('brackets not matching');
+          }
+        }
+        catch(e){
+          setDisplayText('Format error')
+        }
     } else if (val == "del") {
       setDisplayText(displayText.slice(0,-1))
 
@@ -38,7 +58,7 @@ const Home = () => {
            if(bracketOpen==true){
           setDisplayText(displayText+ ')');
           setBracketOpen(false)
-        }else{
+        }else{//for numbers
           setDisplayText(displayText+ '(');
           setBracketOpen(true)
         }
