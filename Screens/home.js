@@ -100,7 +100,9 @@ const Home = () => {
   };
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.opertaionContainer}>
+      <ScrollView style={styles.opertaionContainer} ref={ref => this.scrollView = ref}
+      onContentSizeChange={(contentWidth, contentHeight)=>{
+      this.scrollView.scrollToEnd({animated:true})}}>
         <Text style={styles.displayTexts}>{displayText.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
       </ScrollView>
 
