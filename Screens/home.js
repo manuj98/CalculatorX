@@ -4,10 +4,13 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  Dimensions
 } from "react-native";
 import React from "react";
 import { useState } from "react";
 import { FontAwesome, FontAwesome5, Feather } from "@expo/vector-icons";
+
+const windowWidth = Dimensions.get('window').width;
 
 const Home = () => {
   const [displayText, setDisplayText] = useState("");
@@ -98,7 +101,7 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.opertaionContainer}>
-        <Text style={styles.displayTexts}>{displayText}</Text>
+        <Text style={styles.displayTexts}>{displayText.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
       </ScrollView>
 
       <View style={styles.keyContainer}>
@@ -246,7 +249,8 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+  },
   opertaionContainer: {
     backgroundColor: "white",
     marginTop: 60,
@@ -254,9 +258,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: "black",
     borderWidth: 1,
+    width: windowWidth-50
   },
   displayTexts: {
     fontSize: 40,
+    padding: 5
   },
   keyContainer: {},
   keyRow: {
