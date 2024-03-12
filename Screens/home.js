@@ -28,7 +28,7 @@ const Home = () => {
           
             if(displayText.slice(-1) == "+" ||
             displayText.slice(-1) == "-" ||
-            displayText.slice(-1) == "X" ||
+            displayText.slice(-1) == "*" ||
             displayText.slice(-1) == "/" ||
             displayText.slice(-1) == "%"){//evaluating without last char and replacing occurence of () and ('0')
                   setDisplayText(`${eval(displayText.replace('()', '(0)')).slice(-1)}`)
@@ -52,7 +52,7 @@ const Home = () => {
         setBracketOpen(true)
       }else if ( displayText.slice(-1) == "+" ||
       displayText.slice(-1) == "-" ||
-      displayText.slice(-1) == "X" ||
+      displayText.slice(-1) == "*" ||
       displayText.slice(-1) == "/" ||
       displayText.slice(-1) == "%"){
         setDisplayText(displayText + '(');
@@ -72,7 +72,7 @@ const Home = () => {
         if (
           val == "+" ||
           val == "-" ||
-          val == "X" ||
+          val == "*" ||
           val == "/" ||
           val == "%"
         ) {
@@ -85,7 +85,7 @@ const Home = () => {
         if (
           displayText.slice(-1) == "+" ||
           displayText.slice(-1) == "-" ||
-          displayText.slice(-1) == "X" ||
+          displayText.slice(-1) == "*" ||
           displayText.slice(-1) == "/" ||
           displayText.slice(-1) == "%"
         ) { console.log('hi');
@@ -155,9 +155,9 @@ const Home = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, styles.buttonBlue]}
-            onPress={() => handlePress("X")}
+            onPress={() => handlePress("*")}
           >
-            <Text style={[styles.keyText, styles.keyWhite]}>X</Text>
+            <Text style={[styles.keyText, styles.keyWhite]}>x</Text>
           </TouchableOpacity>
         </View>
 
